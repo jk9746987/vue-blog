@@ -149,14 +149,14 @@ export default {
                     return;
                 }
                 this.error = true;
-                this.errorMsg = "Please ensure you uploaded a cover photo!";
+                this.errorMsg = "未上傳封面照片！";
                 setTimeout(() => {
                     this.error = false;
                 }, 5000)
                 return;
             }
             this.error = true;
-            this.errorMsg = "Please ensure Blog Title & Blog Post has been filled!";
+            this.errorMsg = "未填寫文章標題或內容！";
             setTimeout(() => {
                 this.error = false;
             }, 5000)
