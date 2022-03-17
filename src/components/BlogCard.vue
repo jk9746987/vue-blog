@@ -8,20 +8,22 @@
                 <Delete class="delete"/>
             </div>
         </div>
-        <!-- 以下為假資料 -->
-        <!-- <img :src="require(`../assets/blogCards/${post.blogCoverPhoto}.jpg`)" alt=""> -->
-        <!-- 以下為firebase中的資料 -->
-        <img :src="post.blogCoverPhoto" alt="">
-        <div class="info">
-            <h4>{{post.blogTitle}}</h4>
+        <router-link class="link" :to="{name: 'ViewBlog', params: {blogid: this.post.blogID}}">
             <!-- 以下為假資料 -->
-            <!-- <h6>Posted on:{{post.blogDate}}</h6> -->
+            <!-- <img :src="require(`../assets/blogCards/${post.blogCoverPhoto}.jpg`)" alt=""> -->
             <!-- 以下為firebase中的資料 -->
-            <h6>發布日期:{{new Date(post.blogDate).toLocaleString('zh-TW', {dateStyle: "long"})}}</h6>
-            <router-link class="link" :to="{name: 'ViewBlog', params: {blogid: this.post.blogID}}">
-                查看貼文<Arrow class="arrow"/>
-            </router-link>
-        </div>
+            <img :src="post.blogCoverPhoto" alt="">
+            <div class="info">
+                <h4>{{post.blogTitle}}</h4>
+                <!-- 以下為假資料 -->
+                <!-- <h6>Posted on:{{post.blogDate}}</h6> -->
+                <!-- 以下為firebase中的資料 -->
+                <h6>發布日期:{{new Date(post.blogDate).toLocaleString('zh-TW', {dateStyle: "long"})}}</h6>
+                <span>
+                    查看貼文<Arrow class="arrow"/>
+                </span>
+            </div>
+        </router-link>
     </div>
 </template>
 
@@ -45,12 +47,12 @@ export default {
     },
     methods: {
         deletPost(){
-            if(confirm('要編輯文章嗎?')){
+            if(confirm('要刪除文章嗎?')){
                 this.$store.dispatch("deletePost", this.post.blogID)
             }
         },
         editBlog(){
-            if(confirm('要刪除文章嗎?')){
+            if(confirm('要編輯文章嗎?')){
                 this.$router.push({name: "EditBlog", params: {blogid: this.post.blogID}})
             }
         }
@@ -114,51 +116,52 @@ export default {
         }
     }
 
-    img{
-        display: block;
-        border-radius: 8px 8px 0 0;
-        z-index: 1;
-        width: 100%;
-        max-height: 250px;
-        object-fit: cover;
-    }
+    .link{
+        // display: inline-flex;
+        align-items: center;
+        font-weight: 500;
+        // padding-top: 20px;
+        font-size: 12px;
+        padding-bottom: 4px;
+        transition: .5s ease-in all;
 
-    .info{
-        display: flex;
-        flex-direction: column;
-        z-index: 3;
-        padding: 32px 16px;
-        color: #000;
+        img{
+            display: block;
+            border-radius: 8px 8px 0 0;
+            z-index: 1;
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+        }
+    
+        .info{
+            display: flex;
+            flex-direction: column;
+            z-index: 3;
+            padding: 32px 16px;
+            color: #000;
         
-        h4{
-            padding-bottom: 8px;
-            font-size: 20px;
-            font-weight: 300;
-        }
+            h4{
+                padding-bottom: 8px;
+                font-size: 20px;
+                font-weight: 300;
+            }
 
-        h6{
-            font-weight: 600;
-            font-size: 12px;
-            padding-bottom: 16px;
-        }
+            h6{
+                font-weight: 600;
+                font-size: 12px;
+                padding-bottom: 16px;
+            }
 
-        .link{
-            display: inline-flex;
-            align-items: center;
-            font-weight: 500;
-            padding-top: 20px;
-            font-size: 12px;
-            padding-bottom: 4px;
-            transition: .5s ease-in all;
-        }
+            &:hover{
+                color: rgba(48,48,48,.8)
+            }
 
-        &:hover{
-            color: rgba(48,48,48,.8)
-        }
-
-        .arrow{
-            width: 10px;
+            .arrow{
+                width: 10px;
+            }
         }
     }
+
 }
 </style>
