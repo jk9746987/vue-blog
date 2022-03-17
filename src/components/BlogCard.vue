@@ -12,7 +12,9 @@
             <!-- 以下為假資料 -->
             <!-- <img :src="require(`../assets/blogCards/${post.blogCoverPhoto}.jpg`)" alt=""> -->
             <!-- 以下為firebase中的資料 -->
-            <img :src="post.blogCoverPhoto" alt="">
+            <div class="img_container">
+                <img :src="post.blogCoverPhoto" alt="">
+            </div>
             <div class="info">
                 <h4>{{post.blogTitle}}</h4>
                 <!-- 以下為假資料 -->
@@ -125,14 +127,21 @@ export default {
         padding-bottom: 4px;
         transition: .5s ease-in all;
 
-        img{
-            display: block;
-            border-radius: 8px 8px 0 0;
-            z-index: 1;
-            width: 100%;
-            max-height: 250px;
-            object-fit: cover;
+        .img_container{
+            width: 350px;
+            height: 250px;
+            display: flex;
+
+            img{
+                display: block;
+                border-radius: 8px 8px 0 0;
+                z-index: 1;
+                width: 100%;
+                max-height: 250px;
+                object-fit: cover;
+            }
         }
+   
     
         .info{
             display: flex;
